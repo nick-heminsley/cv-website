@@ -1,29 +1,24 @@
-# dependencies
-node_modules/
-
-# build output
-build/
-dist/
-
-# environment variables
-.env
-
-# logs
+# Logs
+logs
+*.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# runtime
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-
-# IDE / editors
-.vscode/
-.idea/
-
-# testing
-coverage/
-
-# misc
-*.tsbuildinfo
-
-
-.vite/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
