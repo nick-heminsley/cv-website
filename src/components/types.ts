@@ -7,25 +7,30 @@ export interface PersonalInfo {
 }
 
 export interface Experience {
-    id: number
+    id: string
     title: string
     company: string
+    location: string
     startDate: string
     endDate: string
     description: string
 }
 
 export interface Education {
-    id: number
+    id: string
     degree: string
     school: string
+    location: string
     graduationYear: string
+    gpa?: string
+    details?: string
 }
 
 export interface Skill {
-    id: number
+    id: string
     name: string
     level: string
+    category: string
 }
 
 export interface CVData {

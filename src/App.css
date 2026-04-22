@@ -164,16 +164,20 @@
   font-style: italic;
 }
 
-@media (max-width: 600px) {
-  .cv-app {
-    padding: 10px;
-  }
+.skill-category {
+  margin-bottom: 20px;
+}
 
-  .cv-content {
-    padding: 20px;
-  }
+.skill-category h3 {
+  color: #444;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 3px;
+}
 
-  .cv-header h1 {
-    font-size: 2em;
-  }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
 }

@@ -1,53 +1,109 @@
-# React + TypeScript + Vite
+# CV Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based CV builder that loads CV data from a JSON file.
 
-Currently, two official plugins are available:
+## How to Use
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. **Edit your CV**: Modify the `public/cv.json` file with your personal information, experience, education, and skills.
 
-## React Compiler
+2. **View your CV**: The website will automatically load and display your CV data.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3. **Live updates**: Changes to `cv.json` will be reflected when you refresh the page.
 
-## Expanding the ESLint configuration
+## JSON Format
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Use the following structure in your `cv.json` file:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
+```json
+{
+  "personalInfo": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "phone": "(555) 123-4567",
+    "location": "City, State",
+    "summary": "Brief summary about yourself and your career goals."
   },
-])
+  "experiences": [
+    {
+      "id": "exp1",
+      "title": "Job Title",
+      "company": "Company Name",
+      "location": "City, State",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "description": "Detailed description of your responsibilities and achievements."
+    }
+  ],
+  "educations": [
+    {
+      "id": "edu1",
+      "degree": "Degree Name",
+      "school": "School Name",
+      "location": "City, State",
+      "graduationYear": "Year",
+      "gpa": "X.X/4.0",
+      "details": "Additional details like coursework, honors, etc."
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill1",
+      "name": "Skill Name",
+      "level": "Expert",
+      "category": "Category Name"
+    }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
+- **Structured Data**: JSON provides type-safe, structured data storage
+- **Validation**: TypeScript interfaces ensure data integrity
+- **Organized Skills**: Skills are grouped by category for better organization
+- **Responsive Design**: Works on desktop and mobile devices
+- **Clean Layout**: Professional CV styling
+- **TypeScript**: Type-safe development
+- **Vite**: Fast development and build process
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## File Structure
+
+```
+src/
+├── components/
+│   ├── types.ts              # TypeScript interfaces
+│   ├── PersonalInfoSection.tsx
+│   ├── ExperienceSection.tsx
+│   ├── EducationSection.tsx
+│   ├── SkillsSection.tsx
+│   ├── ExperienceForm.tsx    # (Not used in JSON mode)
+│   ├── EducationForm.tsx     # (Not used in JSON mode)
+│   ├── SkillForm.tsx         # (Not used in JSON mode)
+│   └── index.ts              # Barrel exports
+├── utils/
+│   └── dataLoader.ts         # JSON data loading
+├── App.tsx                   # Main app component
+└── main.tsx                  # App entry point
+
+public/
+└── cv.json                   # Your CV data in JSON format
+```
 import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([

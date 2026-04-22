@@ -1,27 +1,34 @@
-import { useState } from 'react'
 import type { Skill } from './types'
-import { SkillForm } from './SkillForm'
 
 interface SkillsSectionProps {
     skills: Skill[]
-    onAdd: (skill: Omit<Skill, 'id'>) => void
 }
 
-export function SkillsSection({ skills, onAdd }: SkillsSectionProps) {
-    const [showForm, setShowForm] = useState(false)
+export function SkillsSection({ skills }: SkillsSectionProps) {
+    // Group skills by category
+    const skillsByCategory = skills.reduce((acc, skill) => {
+        if (!acc[skill.category]) {
+            acc[skill.category] = []
+        }
+        acc[skill.category].push(skill)
+        return acc
+    }, {} as Record<string, typeof skills>)
 
     return (
         <section className="cv-section">
             <h2>Skills</h2>
-            <button onClick={() => setShowForm(!showForm)}>
-                {showForm ? 'Cancel' : 'Add Skill'}
-            </button>
-            {showForm && <SkillForm onAdd={onAdd} />}
             <div className="skills-list">
-                {skills.map(skill => (
-                    <div key={skill.id} className="skill-item">
-                        <span>{skill.name}</span>
-                        <span>{skill.level}</span>
+                {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
+                    <div key={category} className="skill-category">
+                        <h3>{category}</h3>
+                        <div className="skills-grid">
+                            {categorySkills.map(skill => (
+                                <div key={skill.id} className="skill-item">
+                                    <span>{skill.name}</span>
+                                    <span>{skill.level}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
